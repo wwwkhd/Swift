@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <style>
+            div { margin: 6px 0 6px 0; }
+            label { color: #394257; font-size: 16px; }
+            span { color: #394257; font-size: 15px; }
+            .tag { margin: 0 8px 0 0; line-height: 24px; }
+            .lyric { color: #394257; font-size: 15px; line-height: 20px; }
+            .lyric p { margin: 0; }
+            .intro { color: #394257; font-size: 15px; line-height: 20px; }
+            .intro p { margin: 0; }
+        </style>
+    </head>
+    <body>
+        <div style="margin:20px 0 0 12px;">
+            <label>专辑：</label>
+            {% if album %}
+                <span>{{album}}</span>
+            {% else %}
+                <span>无</span>
+            {% /if %}
+        </div>
+        <div style="margin:10px 0 0 12px;">
+            <label>类别：</label>
+            {% if category %}
+                <span>{{category}}</span>
+            {% else %}
+                <span>无</span>
+            {% /if %}
+        </div>
+        <div style="margin:10px 0 0 12px;">
+            <label>标签：</label>
+            {% if tags %}
+                {% for tag in tags %}
+                    <span class="tag">{{tag}}</span>
+                {% /for %}
+            {% else %}
+                <span>无</span>
+            {% /if %}
+        </div>
+        <div style="margin:10px 0 0 12px;">
+            <label>简介：</label>
+            {% if intro %}
+                <div class="intro">{{intro}}</div>
+            {% else %}
+                <span>无</span>
+            {% /if %}
+        </div>
+        <div style="margin:10px 0 0 12px;">
+            <label>歌词/文案：</label>
+            {% if lyric %}
+                <div class="lyric">{{lyric}}</div>
+            {% else %}
+                <span>无</span>
+            {% /if %}
+        </div>
+    </body>
+</html>

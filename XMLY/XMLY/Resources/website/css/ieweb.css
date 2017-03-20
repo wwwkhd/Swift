@@ -1,0 +1,28 @@
+.header .logo {
+  background-image: url('img_ie/logo.png');
+}
+
+.header .upload-btn {
+	background-image: url('img_ie/uploadbtn.png');
+}
+
+.filename .check-box {
+  
+  background-image: url('img_ie/ucheck.png');
+  
+}
+.filename .checked {
+  background-image: url('img_ie/checked.png');
+
+}
+
+.del-btn {
+  background-image: url('img_ie/del_btn.png');  
+  background-position : 0px 3px;
+  height: 27px;
+
+}
+
+.undel{
+	background-position : 0px -39px;
+}

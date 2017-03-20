@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style type="text/css">
+            body {
+                font-size : 16px;
+                color : #333;
+                line-height : 28px;
+                margin : 8px 15px 0px 15px;
+                word-wrap : break-word;
+                text-align : justify;
+            }
+        
+            p { margin: 0px; }
+            img { margin: 10px 0px; }
+            .xbtn { margin: 5px 15px; }
+        </style>
+        <meta charset="UTF-8">
+        <title>preview</title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+    </head>
+    <body>
+        
+        {myContent}
+        
+        <script>
+            var imgs = document.getElementsByTagName('img');
+            var clientWidth = document.body.clientWidth;
+            function registerEvent(img){
+                img.addEventListener('click',function(){
+                                     var showlarge = this.getAttribute('data-showlarge');
+                                     var largeUrl = this.getAttribute('data-large');
+                                     var dataKey = this.getAttribute('data-key');
+                                     if(!showlarge){
+                                     location.href = 'iting://h5img?reloadKey='+dataKey;
+                                     }else if(typeof(dataKey) != 'undefined'){
+                                     location.href = 'iting://h5img?data-key='+dataKey;
+                                     }
+                                     
+                                     
+                                     });
+            }
+        for(var i = 0 ; i < imgs.length ; i++){
+            registerEvent(imgs[i]);
+        }
+        </script>
+    </body>
+</html>

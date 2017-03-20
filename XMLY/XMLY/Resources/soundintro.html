@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <script type="text/JavaScript">
+            function hideIntro()
+            {
+                document.getElementById('divIntro').style.display = "none";
+            }
+        
+            function hideLyric()
+            {
+                document.getElementById('divLyric').style.display = "none";
+            }
+        </script>
+        
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <style>
+            body {
+                font-size : 18px;
+                color : #333;
+                line-height : 30px;
+                letter-spacing : 0px;
+                margin : 0px 20px;
+                word-wrap : break-word;
+                text-align : justify;
+            }
+        
+            p { margin: 0px; }
+            img { margin: 10px 0px; }
+            
+            .title {
+                color : #333;
+                font-size : 24px;
+                line-height : 34px;
+                font-weight : bold;
+            }
+        
+            .playNum {
+                margin: 12px 0px 31px 0px;
+                color : #999;
+                font-size : 13px;
+                line-height : 18px;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <div>
+            {% if title %}
+            <div class="title">{{title}}</div>
+            {% else %}
+            <span>无</span>
+            {% /if %}
+        </div>
+        <div>
+            {% if playNum %}
+            <div class="playNum">{{playNum}}</div>
+            {% else %}
+            <span>无</span>
+            {% /if %}
+        </div>
+        <div id="divIntro">
+            {% if intro %}
+            <div class="intro">{{intro}}</div>
+            {% else %}
+            <span>无</span>
+            {% /if %}
+        </div>
+        <div id="divLyric" style="margin:22px 0 0 0px;">
+            <label>歌词/文案：</label>
+            {% if lyric %}
+            <div class="lyric">{{lyric}}</div>
+            {% else %}
+            <span>无</span>
+            {% /if %}
+        </div>
+        <script>
+            var imgs = document.getElementsByTagName('img');
+            var clientWidth = document.body.clientWidth;
+            function registerEvent(img){
+                img.addEventListener('click',function(){
+                                     var showlarge = this.getAttribute('data-showlarge');
+                                     var largeUrl = this.getAttribute('data-large');
+                                     var dataKey = this.getAttribute('data-key');
+                                     if(showlarge && typeof(dataKey) != 'undefined'){
+                                     location.href = 'iting://h5img?data-key='+dataKey;
+                                     }
+                                     
+                                     
+                                     });
+            }
+        for(var i = 0 ; i < imgs.length ; i++){
+            registerEvent(imgs[i]);
+        }
+        </script>
+    </body>
+</html>

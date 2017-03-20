@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>喜马拉雅FM-wifi上传配乐</title>
+	<META http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<link rel="shortcut icon" type="image/x-icon" href="../css/img/favicon.ico" media="screen" />
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Helvetica, Tahoma, "\5FAE\8F6F\96C5\9ED1";
+        }
+    html {
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    }
+    body,
+    p,
+    input,
+    h1,
+    h2,
+    h3,
+    ul,
+    li,
+    form,
+    hr,
+    div {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        vertical-align: middle;
+        /* -webkit-user-select: none; */
+    }
+    body {
+        background-color: #fff;
+    }
+    input {
+        -webkit-user-select: text;
+    }
+    .warp {
+        min-width: 320px;
+        margin: 0 auto;
+        background-color: #f0f0f0;
+    }
+    .warp .container {
+        background-color: #fff;
+        margin: 0 auto;
+        height: 65%;
+    }
+    .header {
+        background: #33353b;
+        height: 190px;
+        width: 100%;
+        padding-top: 35px;
+        text-align: center;
+        position: fixed;
+        z-index: 999;
+    }
+    .header .logo {
+        background-image: url('../css/img/logo.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        height: 50px;
+        width: 168px;
+        margin: 0 auto;
+    }
+    .header .upload-btn {
+        background-image: url('../css/img/uploadbtn.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        height: 50px;
+        width: 200px;
+        margin: 0 auto;
+        margin-top: 30px;
+        cursor: pointer;
+        position: relative;
+    }
+    .header .upload-tip {
+        margin-top: 10px;
+        color: #696b6f;
+        letter-spacing: 1px;
+        font-size: 13px;
+    }
+    .list-title {
+        position: fixed;
+        width: 100%;
+        z-index: 999;
+    }
+    .list-top {
+        position: relative;
+        top: 225px;
+        border-bottom: 1px #ccc solid;
+        width: 960px;
+        margin: 0 auto;
+        height: 60px;
+        background-color: #fff;
+        text-align: left;
+    }
+    .list-top li {
+        color: #626570;
+        line-height: 60px;
+    }
+    .list-top .filename,
+    .list-top .longtime,
+    .list-top .filesize,
+    .list-top .operate,
+    .list-top .progress {
+        overflow: hidden;
+        display: inline-block;
+    }
+    .list-top .filename {
+        padding-left: 10px;
+        width: 58%;
+    }
+    .list-top .longtime {
+        width: 13%;
+    }
+    .list-top .filesize {
+        width: 13%;
+    }
+    .list-top .operate {
+        width: 12.3%;
+    }
+    .list {
+        min-height: 290px;
+        width: 100%;
+        font-size: 14px;
+        padding-top: 285px;
+    }
+    .list li {
+        height: 50px;
+        line-height: 50px;
+        color: #a3a8b6;
+        width: 960px;
+    }
+    .list .list-sound {
+        width: 960px;
+        margin: 0 auto;
+    }
+    .list .filename,
+    .list .longtime,
+    .list .filesize,
+    .list .operate,
+    .list .progress {
+        overflow: hidden;
+        display: inline-block;
+        height: 50px;
+    }
+    .list .filename {
+        padding-left: 10px;
+        width: 45%;
+        padding-right: 124px;
+    }
+    .list .longtime {
+        width: 13%;
+    }
+    .list .filesize {
+        width: 13%;
+    }
+    .list .operate {
+        width: 12.3%;
+    }
+    .list .progress {
+        position: absolute;
+        height: 50px;
+        width: 946px;
+        z-index: -1;
+    }
+    .list .progress i {
+        background-color: #ebf3ff;
+        position: relative;
+        float: left;
+        height: 50px;
+        z-index: -1;
+    }
+    .filename .check-box {
+        position: relative;
+        float: left;
+        top: 22px;
+        background-image: url('../css/img/ucheck.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        width: 14px;
+        height: 14px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    .filename .checked {
+        background-image: url('../css/img/checked.png');
+    }
+    .list-sound .check-box {
+        top: 18px;
+    }
+    .list-sound li {
+        border-bottom: 1px #eee solid;
+    }
+    .list-sound li:not(.uploading):hover {
+        z-index: -2;
+        background-color: #f5f5f5;
+    }
+    .del-btn {
+        position: relative;
+        float: left;
+        display: inline-block;
+        background: url('../css/img/del_btn.png') -9999px -9999px no-repeat;
+        background-size: 100%;
+        background-position: 0 0;
+        *zoom: 1;
+        vertical-align: middle;
+        width: 115px;
+        height: 24px;
+    }
+    .undel {
+        background-position: 0 -31px;
+    }
+    .list-sound a,
+    .list-sound a:active,
+    .list-sound a:hover {
+        color: #3984ff;
+        text-decoration: none;
+    }
+    .hidden {
+        display: none;
+    }
+    /**
+     * 上传按钮
+     * 
+     */
+    .webuploader-container div {
+        height: 100%!important;
+        width: 100%!important;
+    }
+    .webuploader-pick + div[id*=rt_] {
+        top: 0 !important;
+        left: 0 !important;
+    }
+    .webuploader-element-invisible {
+        display: none;
+    }
+
+    </style>
+        <!--[if gte IE 8]> <style type="text/css">
+         .header .logo{background-image:url(./css/img_ie/logo.png)}.header .upload-btn{background-image:url(./css/img_ie/uploadbtn.png)}.filename .check-box{background-image:url(./css/img_ie/ucheck.png)}.filename .checked{background-image:url(./css/img_ie/checked.png)}.del-btn{background-image:url(./css/img_ie/del_btn.png);background-position:0 3px;height:27px}.undel{background-position:0 -39px}
+         </style><![endif]-->
+</head>
+<body>
+	<div class="header">
+		<div class="logo"></div>
+		<div class="upload-btn"></div>
+		<div class="upload-tip">可同时上传多个 mp3、m4a、aac 格式的音频文件</div>
+		
+	</div>
+	<div class="list-title">
+		<ul class="list-top">
+			<li>
+				<div class="filename">
+					<span class="check-box"></span>
+				文件名<span class="had-select"></span></div>
+				<div class="longtime">时长</div>
+				<div class="filesize">大小</div>
+				<div class="operate "><a href="javascript:;" class="del-btn undel"></a></div>
+			</li>
+		</ul>
+	</div>
+	
+
+	<div class="list">
+		
+		<ul class="list-sound">
+			
+		</ul>
+
+	</div>
+	<script type="text/javascript" src="../js/app.js"></script>
+</body>
+</html>

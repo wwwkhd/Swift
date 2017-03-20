@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+            <style>
+<!--                div { margin: 0px 0px 0px 0px; }-->
+                label { color: #333333; font-size: 15px; line-height: 30px;}
+                .intro { color: #666666; font-size: 15px; line-height: 22px; }
+                .intro p { margin: 0; }
+                .user { color: #666666; font-size: 15px; line-height: 22px; }
+                .user p { margin: 0; }
+                .touser { color: #666666; font-size: 15px; line-height: 22px; }
+                .touser p { margin: 0; }
+                .whybuy { color: #666666; font-size: 15px; line-height: 22px; }
+                .whybuy p { margin: 0; }
+                .notice { color: #666666; font-size: 15px; line-height: 22px; }
+                .notice p { margin: 0; }
+            </style>
+            
+    </head>
+    <body>
+        {% if intro %}
+        <div style="margin: 0px 10px 0px 10px">
+            <label>简介</label>
+            <hr width=100% size=1 color=#bbbcbc>
+            <div class="intro">{{intro}}</div>
+        </div>
+        {% /if %}
+        {% if user %}
+        <div style="margin: 0px 10px 0px 10px">
+            <label>主播</label>
+            <hr width=100% size=1 color=#bbbcbc>
+            <div class="user">{{user}}</div>
+        </div>
+        {% /if %}
+        {% if touser %}
+        <div style="margin: 0px 10px 0px 10px">
+            <label>面向谁</label>
+            <hr width=100% size=1 color=#bbbcbc>
+            <div class="touser">{{touser}}</div>
+        </div>
+        {% /if %}
+        {% if whybuy %}
+        <div style="margin: 0px 10px 0px 10px">
+            <label>为什么听？</label>
+            <hr width=100% size=1 color=#bbbcbc>
+            <div class="whybuy">{{whybuy}}</div>
+        </div>
+        {% /if %}
+        {% if notice %}
+        <div style="margin: 0px 10px 0px 10px">
+            <label>购买须知</label>
+            <hr width=100% size=1 color=#bbbcbc>
+            <div class="notice">{{notice}}</div>
+        </div>
+        {% /if %}
+        <script type="text/JavaScript">
+            
+            function loadImg(url,cb) {
+                var img = new Image();
+                img.src = url;
+                img.onload = function(){
+                    cb();
+                }
+            }
+        
+        function addEvent(elem, eventName, handler){
+            if(elem){
+                if(elem.addEventListener){
+                    return elem.addEventListener(eventName, handler, false);
+                }else if(elem.attachEvent){
+                    return elem.attachEvent("on" + eventName, handler);
+                }else {
+                    elem["on" + eventName] = handler;
+                }
+            }
+        }
+        
+        var imgs = document.getElementsByTagName('img');
+        
+        var len = imgs.length;
+        
+        for(var i=0;i<len;i++){
+            var tem = imgs[i];
+            addEvent(tem.popsrc,'touchstart',function(){
+                     loadImg(tem.popsrc,'touchstart',function(){
+                             this.style.display = 'block';
+                             this.style.maxWidth = '100%';
+                             this.style.src = tem.popsrc;
+                             });
+                     })
+        }
+        
+    </script>
+
+    </body>
+</html>
